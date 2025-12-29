@@ -1,0 +1,25 @@
+# Python virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Tooling / build artifacts
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings (optional)
+.vscode/
+.idea/
+
+# CAN tooling outputs (generated files)
+#*.json
+#*.csv
