@@ -12,3 +12,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Build
+
+To verify if a .dbc file is valid, the following commands may be used.
+
+```bash
+cantools dump networks/can0_powertrain.dbc      # lists all devices
+```
+
