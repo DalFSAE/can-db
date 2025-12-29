@@ -1,3 +1,4 @@
 cantools
 canmatrix
 pyyaml
+matplotlib
