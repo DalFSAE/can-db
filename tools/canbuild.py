@@ -93,7 +93,7 @@ def build(inputs, out_dir: Path):
 
 # Verifies .dbc files, does not generate build files
 def lint(dbc: Path) -> None:
-    print(f"[canbuild] Linting {dbc.stem}...")
+    print(f"[canbuild] Linting {dbc}...")
 
     if not dbc.exists():
         raise FileNotFoundError
@@ -116,11 +116,16 @@ def main():
 
     if cmd == "build":
         build(INPUTS, BUILD)
+
     elif cmd == "lint":
-        lint()
+        if len(sys.argv) < 3:
+            print("Usage: canbuild.py lint <dbc_path>")
+        lint((ROOT / sys.argv[2]).resolve())
+
     elif cmd == "clean":
         clean(BUILD)
-    print("[cantools] Done.")
+
+    print("[cantools] Exiting.")
 
 
 if __name__ == "__main__":
