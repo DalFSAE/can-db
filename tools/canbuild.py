@@ -24,23 +24,24 @@ def run(cmd: list[str]) -> None:
     print(">", " ".join(cmd))
     subprocess.check_call(cmd)
 
-def generate_c_source(dbc: Path):
+def generate_c_source(dbc: Path, out_dir: Path) -> Path:
     can_id = dbc.stem 
-    CAN_SOURCE = BUILD / str(can_id)
-    run(["cantools", "generate_c_source", str(dbc), "-o", str(CAN_SOURCE)])
-    print(f"[canbuild] Generated {CAN_SOURCE}...")
+    out = out_dir / str(can_id)
+    run(["cantools", "generate_c_source", str(dbc), "-o", str(out)])
+    return out 
 
 # Generates build files
-def build():
+def build(inputs, out_dir: Path):
     print("[canbuild] Starting build process...")
     clean()
-    BUILD.mkdir(exist_ok=True) 
+    out_dir.mkdir(exist_ok=True) 
 
-    for dbc in INPUTS:
+    for dbc in inputs:
         can_id = dbc.stem
         print(f"[canbuild] Building: `{dbc}`...")
         run(["cantools", "list", str(dbc)] )
-        generate_c_source(dbc)
+        out = generate_c_source(dbc, out_dir)
+        print(f"[canbuild] Generated {out}...")
 
 # Verifies .dbc files, does not generate build files
 def lint():
@@ -59,7 +60,7 @@ def main():
     cmd = sys.argv[1]
 
     if cmd == "build":
-        build()
+        build(INPUTS, BUILD)
     elif cmd == "lint":
         lint()
     elif cmd == "clean":
