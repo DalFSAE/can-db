@@ -20,9 +20,9 @@ def debug_info():
     print(ROOT)
 
 # Invokes a subprocces to run commands via CLI
-def run(cmd: list[str]) -> None:
+def run(cmd: list[str], *, stdout=None) -> None:
     print(">", " ".join(cmd))
-    subprocess.check_call(cmd)
+    subprocess.check_call(cmd, stdout=stdout)
 
 def generate_c_source(dbc: Path, out_dir: Path) -> Path:
     can_id = dbc.stem 
@@ -34,19 +34,17 @@ def generate_c_source(dbc: Path, out_dir: Path) -> Path:
 def generate_log(dbc: Path, out_dir: Path) -> Path:
     can_id = dbc.stem
     out = out_dir / can_id / f"{can_id}.txt"
+    out.parent.mkdir(parents=True, exist_ok=True)
 
     with out.open("w") as f:
-        subprocess.check_call(
-            ["cantools", "dump", str(dbc)],
-            stdout=f
-        )
+        run(["cantools", "dump", str(dbc)], stdout=f)
 
     return out
 
 # Generates build files
 def build(inputs, out_dir: Path):
     print("[canbuild] Starting build process...")
-    clean()
+    clean(out_dir)
     out_dir.mkdir(exist_ok=True) 
 
     for dbc in inputs:
@@ -66,8 +64,8 @@ def lint():
     print("[canbuild] Starting lint process...")
 
 # Deletes the build folder, and removes build artifacts
-def clean():
-    shutil.rmtree(BUILD, ignore_errors=True)
+def clean(out_dir: Path):
+    shutil.rmtree(out_dir, ignore_errors=True)
     print("[canbuild] Deleted build folder...")
 
 def main():
@@ -82,7 +80,7 @@ def main():
     elif cmd == "lint":
         lint()
     elif cmd == "clean":
-        clean()
+        clean(BUILD)
     print("[cantools] Done.")
 
 if __name__ == "__main__":
