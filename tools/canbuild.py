@@ -24,24 +24,31 @@ def run(cmd: list[str]) -> None:
     print(">", " ".join(cmd))
     subprocess.check_call(cmd)
 
+def generate_c_source(dbc: Path):
+    can_id = dbc.stem 
+    CAN_SOURCE = BUILD / str(can_id)
+    run(["cantools", "generate_c_source", str(dbc), "-o", CAN_SOURCE])
+
 # Generates build files
 def build():
-    print("Starting build process...")
+    print("[canbuild] Starting build process...")
     clean()
     BUILD.mkdir(exist_ok=True) 
 
     for dbc in INPUTS:
-        print(f"Building: `{dbc}`...")
+        can_id = dbc.stem
+        print(f"[canbuild] Building: `{dbc}`...")
         run(["cantools", "list", str(dbc)] )
+
 
 # Verifies .dbc files, does not generate build files
 def lint():
-    print("Starting lint process...")
+    print("[canbuild] Starting lint process...")
 
 # Deletes the build folder, and removes build artifacts
 def clean():
     shutil.rmtree(BUILD, ignore_errors=True)
-    print("Deleted build folder...")
+    print("[canbuild] Deleted build folder...")
 
 def main():
     if len(sys.argv) < 2:
