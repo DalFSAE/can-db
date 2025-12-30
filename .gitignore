@@ -23,3 +23,4 @@ Thumbs.db
 # CAN tooling outputs (generated files)
 #*.json
 #*.csv
+build/
