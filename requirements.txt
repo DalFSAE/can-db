@@ -2,3 +2,4 @@ cantools
 canmatrix
 pyyaml
 matplotlib
+pytest
