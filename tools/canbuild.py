@@ -27,7 +27,8 @@ def run(cmd: list[str]) -> None:
 def generate_c_source(dbc: Path):
     can_id = dbc.stem 
     CAN_SOURCE = BUILD / str(can_id)
-    run(["cantools", "generate_c_source", str(dbc), "-o", CAN_SOURCE])
+    run(["cantools", "generate_c_source", str(dbc), "-o", str(CAN_SOURCE)])
+    print(f"[canbuild] Generated {CAN_SOURCE}...")
 
 # Generates build files
 def build():
@@ -39,7 +40,7 @@ def build():
         can_id = dbc.stem
         print(f"[canbuild] Building: `{dbc}`...")
         run(["cantools", "list", str(dbc)] )
-
+        generate_c_source(dbc)
 
 # Verifies .dbc files, does not generate build files
 def lint():
