@@ -30,6 +30,19 @@ def generate_c_source(dbc: Path, out_dir: Path) -> Path:
     run(["cantools", "generate_c_source", str(dbc), "-o", str(out)])
     return out 
 
+# Create a log file, with CAN outputs.
+def generate_log(dbc: Path, out_dir: Path) -> Path:
+    can_id = dbc.stem
+    out = out_dir / can_id / f"{can_id}.txt"
+
+    with out.open("w") as f:
+        subprocess.check_call(
+            ["cantools", "dump", str(dbc)],
+            stdout=f
+        )
+
+    return out
+
 # Generates build files
 def build(inputs, out_dir: Path):
     print("[canbuild] Starting build process...")
@@ -38,10 +51,15 @@ def build(inputs, out_dir: Path):
 
     for dbc in inputs:
         can_id = dbc.stem
+        
         print(f"[canbuild] Building: `{dbc}`...")
         run(["cantools", "list", str(dbc)] )
+        
         out = generate_c_source(dbc, out_dir)
-        print(f"[canbuild] Generated {out}...")
+        print(f"[canbuild] Source files generated {out}...")
+
+        out = generate_log(dbc, out_dir)
+        print(f"[canbuild] Log generated: {out}...")
 
 # Verifies .dbc files, does not generate build files
 def lint():
