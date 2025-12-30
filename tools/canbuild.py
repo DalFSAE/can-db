@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+import subprocess
+import shutil
 import cantools
 from pathlib import Path
 
@@ -17,16 +19,29 @@ def debug_info():
     print(SCRIPT_DIR)
     print(ROOT)
 
+# Invokes a subprocces to run commands via CLI
+def run(cmd: list[str]) -> None:
+    print(">", " ".join(cmd))
+    subprocess.check_call(cmd)
+
+# Generates build files
 def build():
     print("Starting build process...")
+    clean()
     BUILD.mkdir(exist_ok=True) 
 
+    for dbc in INPUTS:
+        print(f"Building: `{dbc}`...")
+        run(["cantools", "list", str(dbc)] )
+
+# Verifies .dbc files, does not generate build files
 def lint():
     print("Starting lint process...")
 
+# Deletes the build folder, and removes build artifacts
 def clean():
-    print("Starting clean process...")
-
+    shutil.rmtree(BUILD, ignore_errors=True)
+    print("Deleted build folder...")
 
 def main():
     if len(sys.argv) < 2:
