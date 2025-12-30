@@ -1,0 +1,112 @@
+VERSION "0.1"
+
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    EV_DATA_
+    ENVVAR_DATA_
+    SGTYPE_
+    SGTYPE_VAL_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+    BO_TX_BU_
+    BA_DEF_REL_
+    BA_REL_
+    BA_DEF_DEF_REL_
+    BU_SG_REL_
+    BU_EV_REL_
+    BU_BO_REL_
+    SG_MUL_VAL_
+
+BS_: 
+BU_: EM TEAM 
+BO_ 2147485197 Temperature: 8 EM
+   SG_ MUX M : 0|3@1+ (1,0) [0|6] "" TEAM
+   SG_ Min_Temp : 8|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Max_Temp : 16|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp0 m0 : 24|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ NumSensors : 3|5@1+ (1,0) [0|31] "" TEAM
+   SG_ Temp1 m0 : 32|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp2 m0 : 40|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp3 m0 : 48|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp4 m0 : 56|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp5 m1 : 24|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp6 m1 : 32|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp7 m1 : 40|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp8 m1 : 48|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp9 m1 : 56|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp10 m2 : 24|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp11 m2 : 32|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp12 m2 : 40|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp13 m2 : 48|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp14 m2 : 56|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp15 m3 : 24|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp16 m3 : 32|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp17 m3 : 40|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp18 m3 : 48|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp19 m3 : 56|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp20 m4 : 24|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp21 m4 : 32|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp22 m4 : 40|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp23 m4 : 48|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp24 m4 : 56|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp25 m5 : 24|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp26 m5 : 32|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp27 m5 : 40|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp28 m5 : 48|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp29 m5 : 56|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp30 m6 : 24|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+   SG_ Temp31 m6 : 32|8@1+ (0.5,0) [0|127.5] "degC" TEAM
+
+BO_ 2147483917 Measurement: 8 EM
+   SG_ Current : 0|32@5- (1,0) [0|1] "A" TEAM
+   SG_ Voltage : 32|32@5- (1,0) [0|1] "V" TEAM
+
+BO_ 2147484685 Status: 8 EM
+   SG_ Violation : 0|1@1+ (1,0) [0|1] "" TEAM
+   SG_ Logging : 1|1@1+ (1,0) [0|1] "" TEAM
+   SG_ FaultActive : 2|1@1+ (1,0) [0|1] "" TEAM
+   SG_ FaultPrevActive : 3|1@1+ (1,0) [0|1] "" TEAM
+   SG_ Energy : 8|32@5- (1,0) [0|16] "Wh" TEAM
+
+BO_ 2147484429 TeamData1: 8 TEAM
+   SG_ TeamSignal1 : 0|32@1- (1,0) [0|1] "" EM
+   SG_ TeamSignal2 : 32|32@1- (1,0) [0|1] "" EM
+
+BO_ 2147484430 TeamData2: 8 TEAM
+   SG_ TeamSignal3 : 0|32@1- (1,0) [0|1] "" EM
+   SG_ TeamSignal4 : 32|32@1- (1,0) [0|1] "" EM
+
+CM_ BU_ EM "FSAE Energy Meter";
+CM_ BU_ TEAM "Messages received by Energy Meter";
+BA_DEF_ BO_ "GenMsgBackgroundColor" STRING ;
+BA_DEF_ BO_ "GenMsgForegroundColor" STRING ;
+BA_DEF_ BO_ "matchingcriteria" INT 0 0;
+BA_DEF_ BO_ "filterlabeling" INT 0 0;
+BA_DEF_ BO_ "matchingcriteria" INT 0 0;
+BA_DEF_ BO_ "filterlabeling" INT 0 0;
+BA_DEF_DEF_ "GenMsgBackgroundColor" "#ffffff";
+BA_DEF_DEF_ "GenMsgForegroundColor" "#000000";
+BA_DEF_DEF_ "matchingcriteria" 0;
+BA_DEF_DEF_ "filterlabeling" 1;
+BA_DEF_DEF_ "matchingcriteria" 0;
+BA_DEF_DEF_ "filterlabeling" 1;
+BA_ "GenMsgForegroundColor" BO_ 2147485197 "#000000";
+BA_ "GenMsgBackgroundColor" BO_ 2147485197 "#000000";
+BA_ "GenMsgForegroundColor" BO_ 2147483917 "#000000";
+BA_ "GenMsgForegroundColor" BO_ 2147484685 "#000000";
+BA_ "GenMsgForegroundColor" BO_ 2147484429 "#000000";
+BA_ "GenMsgForegroundColor" BO_ 2147484430 "#000000";
