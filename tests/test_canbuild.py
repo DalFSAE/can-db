@@ -67,3 +67,14 @@ def test_good_minimal(tmp_path: Path):
     log = gen_dir / f"{stem}.txt"
     assert log.is_file()
     assert log.stat().st_size > 0
+
+
+def tests_lint_good(tmp_path: Path):
+    good = canbuild.ROOT / "tests" / "data" / "good_minimal.dbc"
+    canbuild.lint(good)
+
+
+def test_lint_bad(tmp_path: Path):
+    bad = canbuild.ROOT / "tests" / "data" / "bad_duplicate_id.dbc"
+    with pytest.raises(ValueError):
+        canbuild.lint(bad)

@@ -92,8 +92,13 @@ def build(inputs, out_dir: Path):
 
 
 # Verifies .dbc files, does not generate build files
-def lint():
-    print("[canbuild] Starting lint process...")
+def lint(dbc: Path) -> None:
+    print(f"[canbuild] Linting {dbc.stem}...")
+
+    if not dbc.exists():
+        raise FileNotFoundError
+
+    assert_no_duplicate_frame_ids(dbc)
 
 
 # Deletes the build folder, and removes build artifacts
