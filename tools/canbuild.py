@@ -94,8 +94,8 @@ def build(inputs, out_dir: Path):
 # Verifies .dbc files, does not generate build files
 def lint(dbc: Path) -> None:
     if not dbc.exists():
-        raise FileNotFoundError
- 
+        raise FileNotFoundError(dbc)
+
     try:
         assert_no_duplicate_frame_ids(dbc)
     except Exception:
