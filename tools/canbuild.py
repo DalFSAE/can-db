@@ -5,6 +5,7 @@ import subprocess
 import shutil
 import cantools
 from pathlib import Path
+from collections.abc import Iterable
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent
@@ -46,6 +47,10 @@ def build(inputs, out_dir: Path):
     print("[canbuild] Starting build process...")
     clean(out_dir)
     out_dir.mkdir(exist_ok=True) 
+
+    # check if input is a single path -> set to iterable instance
+    if isinstance (inputs, (str, Path)):
+        inputs = [Path(inputs)]
 
     for dbc in inputs:
         can_id = dbc.stem
