@@ -43,7 +43,7 @@ def test_duplicate_id(tmp_path: Path):
     out_dir = tmp_path / "build"
 
     # Build should fail due to duplicate CAN frame IDs
-    with pytest.raises(subprocess.CalledProcessError):
+    with pytest.raises(ValueError):
         canbuild.build([bad], out_dir)
 
     # Ensure no output directory was created

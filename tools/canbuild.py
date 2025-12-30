@@ -50,8 +50,21 @@ def generate_log(dbc: Path, out_dir: Path) -> Path:
 
 # check if any CAN frames share the same ID
 def assert_no_duplicate_frame_ids(dbc: Path) -> None:
-    db = cantools.database.load_f
-    ...
+    db = cantools.database.load_file(dbc)
+
+    seen: dict[int, str] = {}
+    duplicates: list[tuple[int, str, str]] = []
+
+    for msg in db.messages:
+        fid = msg.frame_id
+        if fid in seen:
+            duplicates.append((fid, seen[fid], msg.name))
+        else:
+            seen[fid] = msg.name
+
+    if duplicates:
+        details = ", ".join([f"0x{fid:X} ({a} vs {b})" for fid, a, b in duplicates])
+        raise ValueError(f"Duplicate CAN frame IDs in {dbc}: {details}")
 
 
 # Generates build files
@@ -65,9 +78,11 @@ def build(inputs, out_dir: Path):
         inputs = [Path(inputs)]
 
     for dbc in inputs:
-        can_id = dbc.stem
+        # List all messages, throws exception early if any errors occur
         print(f"[canbuild] Building: `{dbc}`...")
         run(["cantools", "list", str(dbc)])
+
+        assert_no_duplicate_frame_ids(dbc)
 
         out = generate_c_source(dbc, out_dir)
         print(f"[canbuild] Source files generated {out}...")
