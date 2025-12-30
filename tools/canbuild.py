@@ -82,7 +82,7 @@ def build(inputs, out_dir: Path):
         print(f"[canbuild] Building: `{dbc}`...")
         run(["cantools", "list", str(dbc)])
 
-        assert_no_duplicate_frame_ids(dbc)
+        lint(dbc)
 
         out = generate_c_source(dbc, out_dir)
         print(f"[canbuild] Source files generated {out}...")
@@ -92,8 +92,17 @@ def build(inputs, out_dir: Path):
 
 
 # Verifies .dbc files, does not generate build files
-def lint():
-    print("[canbuild] Starting lint process...")
+def lint(dbc: Path) -> None:
+    if not dbc.exists():
+        raise FileNotFoundError(dbc)
+
+    try:
+        assert_no_duplicate_frame_ids(dbc)
+    except Exception:
+        print(f"[canbuild] [FAIL]: {dbc.name}")
+        raise
+
+    print(f"[canbuild] [PASS]: {dbc.name}")
 
 
 # Deletes the build folder, and removes build artifacts
@@ -111,11 +120,16 @@ def main():
 
     if cmd == "build":
         build(INPUTS, BUILD)
+
     elif cmd == "lint":
-        lint()
+        if len(sys.argv) < 3:
+            print("Usage: canbuild.py lint <dbc_path>")
+        lint((ROOT / sys.argv[2]).resolve())
+
     elif cmd == "clean":
         clean(BUILD)
-    print("[cantools] Done.")
+
+    print("[cantools] Exiting.")
 
 
 if __name__ == "__main__":
