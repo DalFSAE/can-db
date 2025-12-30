@@ -64,6 +64,7 @@ def main():
         lint()
     elif cmd == "clean":
         clean()
+    print("[cantools] Done.")
 
 if __name__ == "__main__":
     debug_info()
