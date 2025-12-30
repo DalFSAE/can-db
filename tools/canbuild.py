@@ -82,7 +82,7 @@ def build(inputs, out_dir: Path):
         print(f"[canbuild] Building: `{dbc}`...")
         run(["cantools", "list", str(dbc)])
 
-        assert_no_duplicate_frame_ids(dbc)
+        lint(dbc)
 
         out = generate_c_source(dbc, out_dir)
         print(f"[canbuild] Source files generated {out}...")
