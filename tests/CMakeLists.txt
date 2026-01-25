@@ -10,8 +10,6 @@ target_link_libraries(can_db_tests PRIVATE can_db)
 target_include_directories(can_db_tests PRIVATE
     .
     unity
-    "${CMAKE_CURRENT_SOURCE_DIR}/src"
-    "${CAN_DB_GENERATED_INCLUDE_DIR}"
 )
 
 add_test(NAME can_db_tests COMMAND can_db_tests)
