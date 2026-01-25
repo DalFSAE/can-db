@@ -11,6 +11,7 @@ from collections.abc import Iterable
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent
 BUILD = ROOT / "build"
+DIST = ROOT / "dist"
 
 INPUTS = [
     ROOT / "networks" / "can0_powertrain.dbc",
@@ -113,7 +114,7 @@ def clean(out_dir: Path):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: canbuild.py [build|lint|clean]")
+        print("Usage: canbuild.py [build|lint|clean|deploy]")
         sys.exit(1)
 
     cmd = sys.argv[1]
@@ -128,6 +129,9 @@ def main():
 
     elif cmd == "clean":
         clean(BUILD)
+    elif cmd =="deploy":
+        build(INPUTS, BUILD)
+        package_build(BUILD, DIST)
 
     print("[cantools] Exiting.")
 
