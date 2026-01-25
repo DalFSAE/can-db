@@ -118,8 +118,13 @@ def main():
 
     cmd = sys.argv[1]
 
+    out_dir = BUILD
+    if "--out" in sys.argv:
+        i = sys.argv.index("--out")
+        out_dir = (ROOT / sys.argv[i + 1]).resolve()
+
     if cmd == "build":
-        build(INPUTS, BUILD)
+        build(INPUTS, out_dir)
 
     elif cmd == "lint":
         if len(sys.argv) < 3:
