@@ -26,6 +26,8 @@ cantools dump networks/can0_powertrain.dbc      # lists all devices
 
 ### canbuild
 
+canbuild is a custom python script used for generating and deploying DalFSAE `.dbc` files.
+
 ```bash
 python3 tools/cantools build        # generates build files
 python3 tools/cantools clean        # deletes build artifacts
