@@ -14,9 +14,20 @@ pip install -r requirements.txt
 
 ## Build
 
+### cantools
+
+cantools is used for building `.dbc` files into a `.c/.h` files.
 To verify if a .dbc file is valid, the following commands may be used.
 
 ```bash
 cantools dump networks/can0_powertrain.dbc      # lists all devices
+
+```
+
+### canbuild
+
+```bash
+python3 tools/cantools build        # generates build files
+python3 tools/cantools clean        # deletes build artifacts
 ```
 
