@@ -1,4 +1,4 @@
-# include/README.md 
+# CAN Database - Auto-genertated
 
 This directory contains auto-generated C headers and sources produced from the CAN `.dbc` files in `networks/`.
 
@@ -17,4 +17,3 @@ python tools/canbuild.py build --out include
 git add include
 git commit -m "Update generated CAN interface"
 ```
-
