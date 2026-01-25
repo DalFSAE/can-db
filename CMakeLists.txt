@@ -37,18 +37,6 @@ target_link_libraries(can_db_hello PRIVATE can_db)
 # ---- Tests -----------------------------------------------------------------
 if (CAN_DB_BUILD_TESTS)
     enable_testing()
-
-    add_executable(can_db_tests
-        tests/test_can_db.c
-    )
-
-    target_link_libraries(can_db_tests PRIVATE can_db)
-
-    target_include_directories(can_db_tests PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/tests"
-        "${CAN_DB_GENERATED_INCLUDE_DIR}"
-    )
-
-    add_test(NAME can_db_tests COMMAND can_db_tests)
+    add_subdirectory(tests)
 endif()
 
