@@ -2,11 +2,20 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "default",
-      "binaryDir": "build",
+      "name": "debug",
+      "binaryDir": "build/debug",
       "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "CAN_DB_BUILD_TESTS": "ON"
+      }
+    },
+    {
+      "name": "release",
+      "binaryDir": "build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CAN_DB_BUILD_TESTS": "OFF"
       }
     }
   ]
