@@ -10,9 +10,16 @@ set(CAN_DB_GENERATED_INCLUDE_DIR
 )
 
 # ---- Library ---------------------------------------------------------------
-# List sources here 
+# List sources here
+
+file(GLOB_RECURSE CAN_DB_GENERATED_SOURCES
+    CONFIGURE_DEPENDS
+    "${CAN_DB_GENERATED_INCLUDE_DIR}/*.c"
+)
+
 add_library(can_db STATIC
     src/can_db.c
+    ${CAN_DB_GENERATED_SOURCES}
 )
 
 target_compile_features(can_db PUBLIC c_std_11)
