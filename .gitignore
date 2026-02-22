@@ -24,3 +24,6 @@ Thumbs.db
 #*.json
 #*.csv
 build/
+
+# cache
+.cache/
