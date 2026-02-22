@@ -33,3 +33,12 @@ python3 tools/cantools build        # generates build files
 python3 tools/cantools clean        # deletes build artifacts
 ```
 
+### C
+
+To build and run C tests:
+
+```bash
+cmake -S . -B build
+cmake --build build
+ctest --test-dir build
+```
