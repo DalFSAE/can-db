@@ -3,7 +3,7 @@ project(can_db LANGUAGES C)
 
 option(CAN_DB_BUILD_TESTS "Build unit tests" ON)
 
-# Where your generated CAN headers live (committed for now)
+# Generated CAN headers
 set(CAN_DB_GENERATED_INCLUDE_DIR
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     CACHE PATH "Directory containing generated CAN headers"
