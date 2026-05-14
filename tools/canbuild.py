@@ -15,6 +15,7 @@ BUILD = ROOT / "build"
 INPUTS = [
     ROOT / "networks" / "can0_powertrain.dbc",
     ROOT / "networks" / "can1_data.dbc",
+    ROOT / "networks" / "can0_network.dbc",
 ]
 
 GEN_LINE_RE = re.compile(
