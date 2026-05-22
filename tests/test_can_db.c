@@ -48,7 +48,12 @@ void test_can_import(void) {
     TEST_ASSERT_EQUAL(0, rc);
 }
 
+void test_can_table(void) {
+    TEST_ASSERT_EQUAL(1, 0);
+}
+
 void run_test_can_db(void) {
     RUN_TEST(test_can_import);
     RUN_TEST(test_can0_m172);
+    RUN_TEST(test_can_table);
 }
